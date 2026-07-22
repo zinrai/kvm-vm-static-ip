@@ -28,9 +28,15 @@ func run() error {
 	address := flag.String("address", "", "IPv4 address in CIDR notation, e.g. 10.10.0.11/24 (required)")
 	gateway := flag.String("gateway", "", "Default gateway address")
 	verbose := flag.Bool("verbose", false, "Display verbose output")
+	showVersion := flag.Bool("version", false, "Print version information and exit")
 
 	flag.Usage = displayHelp
 	flag.Parse()
+
+	if *showVersion {
+		printVersion()
+		os.Exit(0)
+	}
 
 	if *help {
 		displayHelp()
